@@ -1,14 +1,37 @@
 <template>
-  <div class="home">
-    <h1> Titles </h1>
-  </div>
+    <div id = "vuex">
+        <b-loading :active.sync="getLoadingTitleData"></b-loading>
+        <ul>
+            <li v-for="(user, index) in getTitleData" :key="index">
+                {{user.title}}
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
+
+import { mapGetters, mapActions } from 'vuex' 
 export default {
-  name: 'home',
-  components: {
-  }
+    data() {
+        return {
+        }
+    },
+    computed: {
+        ...mapGetters('taskModule', ['getTitleData', 'getLoadingTitleData'])
+    },
+    methods: {
+        ...mapActions('taskModule', ['requestTitleData'])
+    },
+    mounted() {
+        console.log("lifecycle hook fires up!");
+        this.requestTitleData();
+    }
 }
 </script>
+
+<style lang="scss" scoped>
+ul {
+    list-style-type: disc;
+}
+</style>

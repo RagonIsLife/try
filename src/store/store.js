@@ -6,11 +6,13 @@ the contact page would have a different module and so on and so forth. */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import testModule from './modules/test/module'
+import taskModule from './modules/task/module'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
-        testModule
+        testModule,
+        taskModule
     }
 })
